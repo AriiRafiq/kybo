@@ -112,7 +112,7 @@ if [ -z "$nm" ]; then
                                                 kybo
 	fi
 fi
-echo $id > $nm
+echo $bssid > $nm
 echo ""
 mdk3 wlan0mon d -b $nm -c $ch
 }
