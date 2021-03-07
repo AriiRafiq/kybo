@@ -38,9 +38,8 @@ resize -s 34 80
 trap ctrl_c INT
 ctrl_c() {
 	echo -e "$BlueF" && airmon-ng stop wlan0mon
-	cd && cd /root/Desktop
 	if [ -f "$nm" ]; then
-	rm /root/Desktop/$nm
+	rm $nm
 	fi
 	echo "" && echo -e $BlueF" [$white"*"$BlueF]$red  Exiting ..." && sleep 0.2
 	echo -e $BlueF" [$white"*"$BlueF]$red  GoodBye!"
@@ -54,7 +53,6 @@ printf '\033]2;KYBO \a'
 ######START#######
 kybo()
 {
-cd && cd /root/Desktop
 airmon-ng start wlan0
 gnome-terminal -x airodump-ng wlan0mon
 echo -n -e "$cyan  Wich One (BSSID) -$white "
