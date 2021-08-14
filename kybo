@@ -37,7 +37,7 @@ resize -s 34 80
 # ctrl_c
 trap ctrl_c INT
 ctrl_c() {
-	echo -e "$BlueF" && airmon-ng stop wlan0mon
+	echo -e "$BlueF" && ifconfig wlan0 down && iwconfig wlan0 mode managed && ifconfig wlan0 up
 	if [ -f "$nm" ]; then
 	rm $nm
 	fi
@@ -54,7 +54,7 @@ printf '\033]2;KYBO \a'
 kybo()
 {
 airmon-ng start wlan0
-gnome-terminal -x airodump-ng wlan0mon
+gnome-terminal -e 'sh -c "airodump-ng wlan0; exec bash" '
 echo -n -e "$cyan  Wich One (BSSID) -$white "
 read bssid
 if [ -z "$bssid" ]; then
